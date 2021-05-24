@@ -98,21 +98,74 @@ public:
   token(const token &other) = default;
   token &operator=(const token &other) = default;
 
-  token_type token_oneChar(int c1);
-  token_type token_twoChars(int c1, int c2);
-  constexpr bool is_whitespace(int c1);
-  constexpr bool is_delimeter(int c1);
-  constexpr bool is_arithmetic_operator(int c1);
-  constexpr bool is_comparison_operator(int c1);
-  constexpr bool is_alpha_or_numeric(int c1);
-  constexpr bool is_alpha(int c1);
-  constexpr bool is_digit(int c1);
-  constexpr bool is_ascii(int c1);
-  constexpr int string_to_int(char *ptr);
+  static token_type token_oneChar(int c1);
+  static token_type token_twoChars(int c1, int c2);
+
+  static constexpr bool is_whitespace(int c1);
+  static constexpr bool is_delimeter(int c1);
+  static constexpr bool is_arithmetic_operator(int c1);
+  static constexpr bool is_comparison_operator(int c1);
+  static constexpr bool is_alpha_or_numeric(int c1);
+  static constexpr bool is_alpha(int c1);
+  static constexpr bool is_digit(int c1);
+  static constexpr bool is_ascii(int c1);
+  static constexpr int string_to_int(char *ptr);
 
   token_type type{};
   std::string value{};
 };
+
+constexpr bool cookie::token::is_alpha(int c1) {
+  return (c1 >= 'a' && c1 <= 'z') || (c1 >= 'A' && c1 <= 'Z');
+}
+
+constexpr bool cookie::token::is_digit(int c1) {
+  return (c1 >= '0' && c1 <= '9');
+}
+
+constexpr bool cookie::token::is_alpha_or_numeric(int c1) {
+  return cookie::token::is_alpha(c1) || cookie::token::is_digit(c1);
+}
+
+constexpr bool cookie::token::is_whitespace(int c1) {
+  return (c1 == ' ' || c1 == 10 || c1 == '\t' || c1 == '\f' || c1 == '\r' ||
+          c1 == '\v');
+}
+
+constexpr bool cookie::token::is_delimeter(int c1) {
+  return ((c1 == '(') || (c1 == ')') || (c1 == '{') || (c1 == '}') ||
+          (c1 == '[') || (c1 == ']'));
+}
+
+constexpr bool cookie::token::is_comparison_operator(int c1) {
+  return ((c1 == '<') || (c1 == '>'));
+}
+
+constexpr bool cookie::token::is_ascii(int c1) {
+  return !(c1 >= 0 && c1 < 128);
+}
+
+constexpr int cookie::token::string_to_int(char *ptr) {
+  int x = 0;
+  bool neg = false;
+  if (*ptr == '-') {
+    neg = true;
+    ++ptr;
+  }
+  while (*ptr != '\0') {
+    x = (x * 10) + (*ptr - '0');
+    ++ptr;
+  }
+  if (neg)
+    x = -x;
+  return x;
+}
+
+constexpr bool cookie::token::is_arithmetic_operator(int c1) {
+  return ((c1 == '+') || (c1 == '-') || (c1 == '*') || (c1 == '/') ||
+          (c1 == '%'));
+}
+
 } // namespace cookie
 
 #endif
