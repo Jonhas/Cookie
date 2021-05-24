@@ -2,6 +2,7 @@
 #define TOKEN_H
 
 #include <iostream>
+#include <unordered_map>
 
 namespace cookie {
 enum class token_type {
@@ -110,6 +111,35 @@ public:
   static constexpr bool is_digit(int c1);
   static constexpr bool is_ascii(int c1);
   static constexpr int string_to_int(char *ptr);
+
+  static inline const std::unordered_map<std::string, token_type> keywords = {
+      {"void", token_type::token_void},
+      {"fn", token_type::token_function},
+      {"return", token_type::token_return},
+      {"int", token_type::token_spec_int},
+      {"double", token_type::token_spec_double},
+      {"bool", token_type::token_spec_bool},
+      {"true", token_type::token_true},
+      {"false", token_type::token_false},
+      {"and", token_type::token_and},
+      {"or", token_type::token_or},
+      {"xor", token_type::token_xor},
+      {"nand", token_type::token_nand},
+      {"not", token_type::token_not},
+      {"string", token_type::token_spec_string},
+      {"struct", token_type::token_spec_struct},
+      {"if", token_type::token_if},
+      {"elif", token_type::token_elif},
+      {"else", token_type::token_else},
+      {"for", token_type::token_for},
+      {"while", token_type::token_while},
+      {"break", token_type::token_break},
+      {"continue", token_type::token_continue},
+      {"const", token_type::token_const},
+      {"nil", token_type::token_nil},
+      {"type", token_type::token_type},
+      {"use", token_type::token_use},
+      {"as", token_type::token_as}};
 
   token_type type{};
   std::string value{};

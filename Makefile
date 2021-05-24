@@ -17,7 +17,7 @@ clean:
 	-rm cookie 
 
 lint:
-	clang-tidy src/runtime/compile/*.cpp src/runtime/compile/*.hpp
+	clang-tidy -system-headers -header-filter=.* --extra-arg=-std=c++20 src/runtime/compile/*.cpp src/runtime/compile/*.hpp
 
 format:
 	clang-format -i -style=llvm src/runtime/*.cpp src/runtime/compile/*.cpp src/runtime/compile/*.hpp 

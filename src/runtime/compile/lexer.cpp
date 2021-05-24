@@ -16,7 +16,67 @@ std::unique_ptr<cookie::token> cookie::lexer::tokenize() {
       return evaluate_delimeters_and_advance();
     if (cookie::token::is_digit(peek()))
       return evaluate_numbers_and_advance();
+    if (peek() == '\'')
+      return evaluate_char_and_advance();
+    if (peek() == '\"')
+      return evaluate_string_and_advance();
+    if (cookie::token::is_alpha(peek()))
+      return evaluate_keywords_or_identifiers();
+    if (peek() == '.') {
+      lexer_advance();
+      return std::make_unique<cookie::token>(token_type::token_dot, ".");
+    }
+    if (peek() == ';') {
+      lexer_advance();
+      return std::make_unique<cookie::token>(token_type::token_semicolon, ";");
+    }
   }
+}
+
+std::unique_ptr<cookie::token>
+cookie::lexer::evaluate_keywords_or_identifiers() {
+  auto temp = "";
+  while (cookie::token::is_alpha_or_numeric(peek())) {
+    temp += peek();
+    lexer_advance();
+    if (peek() == '_') {
+      temp += peek();
+      lexer_advance();
+    }
+  }
+  const auto got = cookie::token::keywords.find(temp);
+  if (got != cookie::token::keywords.end())
+    return std::make_unique<token>(got->second, temp);
+  else
+    return std::make_unique<token>(token_type::token_identifier, temp);
+}
+
+std::unique_ptr<cookie::token> cookie::lexer::evaluate_string_and_advance() {
+  // eat the " char
+  lexer_advance();
+  auto temp = "";
+  while (peek() != '\"') {
+    temp += peek();
+    lexer_advance();
+    if (check_eof())
+      return std::make_unique<cookie::token>(token_type::token_error,
+                                             "eof while tokenizing string");
+  }
+
+  // eat the closing " char
+  lexer_advance();
+  return std::make_unique<cookie::token>(token_type::token_string, temp);
+}
+
+std::unique_ptr<cookie::token> cookie::lexer::evaluate_char_and_advance() {
+  lexer_advance();
+  auto temp = std::string(1, peek());
+  lexer_advance();
+  if (peek() != '\'')
+    return std::make_unique<cookie::token>(token_type::token_error,
+                                           "Invalid char");
+  lexer_advance();
+  return std::make_unique<cookie::token>(token_type::token_char, temp);
 }
 
 std::unique_ptr<cookie::token> cookie::lexer::evaluate_numbers_and_advance() {
