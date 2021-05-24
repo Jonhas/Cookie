@@ -119,7 +119,7 @@ constexpr bool cookie::token::is_whitespace(int c1) {
           c1 == '\v');
 }
 
-constexpr bool cookie::token::is_deliometer(int c1) {
+constexpr bool cookie::token::is_delimeter(int c1) {
   return ((c1 == '(') || (c1 == ')') || (c1 == '{') || (c1 == '}') ||
           (c1 == '[') || (c1 == ']'));
 }

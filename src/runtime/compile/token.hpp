@@ -101,7 +101,7 @@ public:
   token_type token_oneChar(int c1);
   token_type token_twoChars(int c1, int c2);
   constexpr bool is_whitespace(int c1);
-  constexpr bool is_deliometer(int c1);
+  constexpr bool is_delimeter(int c1);
   constexpr bool is_arithmetic_operator(int c1);
   constexpr bool is_comparison_operator(int c1);
   constexpr bool is_alpha_or_numeric(int c1);
