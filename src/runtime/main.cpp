@@ -1,4 +1,5 @@
-#include "compile/lexer.hpp"
+#include "compile/compile.hpp"
+
 #include <cstdio>
 int main(int argc, char **argv) {
   if (argc < 2) {
@@ -10,5 +11,6 @@ int main(int argc, char **argv) {
     fprintf(stderr, "Cookie: Invalid Input File\n");
     return -1;
   }
+  compile_file(argv[1]);
   return 0;
 }
