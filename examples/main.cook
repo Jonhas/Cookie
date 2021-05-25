@@ -1,6 +1,18 @@
-fn main(x => int, y => double ) => int {
-    # This is a comment 
-    a => int := 3 ; 
-    b => int := fib(a); 
-    return 0; 
+fn binary_search(a: int[], n: int, x: int) => int 
+{
+    low: int := 0; 
+    high: int := n-1; 
+
+    while low <= high {
+        mid: int := (low + high)/2; 
+        if x == a[mid]{
+            return mid; 
+        }
+    }
+    elif x < a[mid]{
+        high := mid - 1; 
+    }
+    else {
+        low := mid +1; 
+    }
 }

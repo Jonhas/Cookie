@@ -1,7 +1,7 @@
 #include "lexer.hpp"
 
 std::unique_ptr<cookie::token> cookie::lexer::tokenize() {
-  while (1) {
+  while (true) {
     if (check_eof())
       return std::make_unique<cookie::token>(token_type::token_eof, "EOF");
     if (cookie::token::is_whitespace(peek())) {
@@ -22,9 +22,33 @@ std::unique_ptr<cookie::token> cookie::lexer::tokenize() {
       return evaluate_string_and_advance();
     if (cookie::token::is_alpha(peek()))
       return evaluate_keywords_or_identifiers();
+    if (peek()==','){
+      lexer_advance(); 
+      return std::make_unique<cookie::token>(token_type::token_comma,","); 
+    }
     if (peek() == '.') {
       lexer_advance();
       return std::make_unique<cookie::token>(token_type::token_dot, ".");
+    }
+    if(peek() == ':')  {
+      if (peek(1)=='=') {
+        lexer_advance(2); 
+        return std::make_unique<cookie::token>(token_type::token_assign, ":="); 
+      }
+      else{
+        lexer_advance(); 
+        return std::make_unique<cookie::token>(token_type::token_init, ":"); 
+      } 
+    }
+    if (peek()=='='){
+      if (peek(1)=='>'){
+        lexer_advance(2); 
+        return std::make_unique<cookie::token>(token_type::token_arrow, "=>"); 
+      }
+      else if (peek(1)=='='){
+        lexer_advance(2); 
+        return std::make_unique<cookie::token>(token_type::token_equal, "=="); 
+      }
     }
     if (peek() == ';') {
       lexer_advance();
@@ -35,7 +59,7 @@ std::unique_ptr<cookie::token> cookie::lexer::tokenize() {
 
 std::unique_ptr<cookie::token>
 cookie::lexer::evaluate_keywords_or_identifiers() {
-  auto temp = "";
+  std::string temp;
   while (cookie::token::is_alpha_or_numeric(peek())) {
     temp += peek();
     lexer_advance();
@@ -54,7 +78,7 @@ cookie::lexer::evaluate_keywords_or_identifiers() {
 std::unique_ptr<cookie::token> cookie::lexer::evaluate_string_and_advance() {
   // eat the " char
   lexer_advance();
-  auto temp = "";
+  std::string temp;
   while (peek() != '\"') {
     temp += peek();
     lexer_advance();
@@ -99,15 +123,15 @@ std::unique_ptr<cookie::token> cookie::lexer::evaluate_numbers_and_advance() {
 
 std::unique_ptr<cookie::token>
 cookie::lexer::evaluate_arithmetic_and_advance() {
-  if ((peek(1) == '=') || (peek(1) == peek())) {
+  if ((peek(1) == '=') || (peek()==peek(1))) {
     auto type = cookie::token::token_twoChars(peek(), peek(1));
     auto temp = std::string(1, peek()) + peek(1);
     lexer_advance(2);
     return std::make_unique<cookie::token>(type, temp);
   }
-  lexer_advance();
-  std::string temp(1, peek());
+  std::string temp(1,peek());
   auto type = cookie::token::token_oneChar(peek());
+  lexer_advance(); 
   return std::make_unique<cookie::token>(type, temp);
 }
 

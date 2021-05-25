@@ -42,6 +42,7 @@ enum class token_type {
   token_comma,
 
   token_assign,
+  token_init, 
 
   token_equal,
   token_neq,

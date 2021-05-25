@@ -4,14 +4,14 @@ headers = ${wildcard src/runtime/*.hpp src/runtime/*/*.hpp}
 objects = ${sources:.cpp=.o}
 flags = -g -Wall -Wextra -O2 -std=c++20 
 
-all: cookie io.so
+all: cookie # io.so
 
 cookie: ${sources} ${headers}
 	g++ ${sources} -o cookie ${flags} -lm -ldl -rdynamic 
 
 
-io.so: ${wildcard src/modules/io/*.hpp src/modules/io/*.cpp}
-	g++ ${wildcard src/modules/io/*.cpp} -shared -wl, -soname, io.so -o $@ -std=c++20 
+# io.so: ${wildcard src/modules/io/*.hpp src/modules/io/*.cpp}
+# 	g++ ${wildcard src/modules/io/*.cpp} -shared -std=c++20  -o io.so -lcookie 
 
 clean:
 	-rm *.out 

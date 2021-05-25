@@ -11,11 +11,13 @@ void compile(const std::string filename) {
       perror("Invalid token initialization\n");
       break;
     }
-    std::cout << "Token (" << token->value << '\n';
+    
+    std::cout << "Token (" << token->value << ")" << '\n';
     if (token->type == cookie::token_type::token_error ||
         token->type == cookie::token_type::token_eof)
       break;
   }
+
 }
 
 void compile_file(const char *filename) {

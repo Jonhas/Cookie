@@ -1,0 +1,2 @@
+// Will use : for type specialization, e.g, x: int, and := for assigning values, e.g, x :=3. 
+// So, if we want to make a new variable and assign a value to it, we have x: int := 3.  
