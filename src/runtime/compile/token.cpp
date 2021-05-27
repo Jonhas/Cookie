@@ -19,7 +19,7 @@ cookie::token_type cookie::token::token_oneChar(int c1) {
   case '*':
     return token_type::token_mult;
   case '+':
-    return token_type::token_add; 
+    return token_type::token_add;
   case '-':
     return token_type::token_sub;
   case '/':
@@ -33,7 +33,7 @@ cookie::token_type cookie::token::token_oneChar(int c1) {
   case '.':
     return token_type::token_dot;
   case ':':
-    return token_type::token_init; 
+    return token_type::token_init;
   }
   return token_type::token_error;
 }

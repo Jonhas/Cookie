@@ -1,6 +1,6 @@
 
-sources = ${wildcard src/runtime/*.cpp src/runtime/*/*.cpp }
-headers = ${wildcard src/runtime/*.hpp src/runtime/*/*.hpp}
+sources = ${wildcard src/runtime/*.cpp src/runtime/*/*.cpp src/runtime/*/*/*.cpp }
+headers = ${wildcard src/runtime/*.hpp src/runtime/*/*.hpp src/runtime/*/*/*.hpp}
 objects = ${sources:.cpp=.o}
 flags = -g -Wall -Wextra -O2 -std=c++20 
 
@@ -22,7 +22,7 @@ clean:
 	-rm cookie 
 
 lint:
-	clang-tidy -system-headers -header-filter=.* --extra-arg=-std=c++20 src/runtime/compile/*.cpp src/runtime/compile/*.hpp
+	clang-tidy -system-headers -header-filter=.* --extra-arg=-std=c++20 src/runtime/compile/*.cpp src/runtime/compile/*.hpp 
 
 format:
 	clang-format -i -style=llvm ${sources} ${headers}

@@ -1,23 +1,14 @@
 #include "compile.hpp"
-#include <vector>
 
 void compile(const std::string filename) {
   size_t position = 0;
   auto lexer = std::make_unique<cookie::lexer>(filename, position);
-  std::vector<std::unique_ptr<cookie::token>> tokens;
-  while (true) {
-    auto token = lexer->tokenize();
-    if (!token) {
-      perror("Invalid token initialization\n");
-      break;
-    }
-    
-    std::cout << "Token (" << token->value << ")" << '\n';
-    if (token->type == cookie::token_type::token_error ||
-        token->type == cookie::token_type::token_eof)
-      break;
+  std::vector<cookie::token> tokens;
+  tokens = std::move(lexer->tokenize());
+  for (const auto &t : tokens) {
+    std::cout << "Token (" << t.type << ", " << t.value << ")" << '\n';
   }
-
+  std::cout << "\n";
 }
 
 void compile_file(const char *filename) {
