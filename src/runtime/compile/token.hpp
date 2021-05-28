@@ -152,6 +152,7 @@ public:
       return *this;
     type = std::move(other.type);
     value = std::move(other.value);
+    return *this;
   }
 
   token &operator=(const token &other) {

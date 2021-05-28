@@ -22,7 +22,7 @@ clean:
 	-rm cookie 
 
 lint:
-	clang-tidy -checks="-*,modernize-use-override" -header-filter=.* --extra-arg=-std=c++20 src/runtime/compile/*.cpp src/runtime/compile/*.hpp src/runtime/compile/ast/*.hpp
+	clang-tidy  -header-filter=.* --extra-arg=-std=c++20 src/runtime/compile/*.cpp src/runtime/compile/*.hpp src/runtime/compile/ast/*.hpp
 
 format:
 	clang-format -i -style=llvm ${sources} ${headers}

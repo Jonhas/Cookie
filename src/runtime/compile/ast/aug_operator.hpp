@@ -16,7 +16,7 @@ namespace cookie {
 template <typename T> class aug_operator : public cookie::expression<T> {
   explicit aug_operator(const cookie::token &val) noexcept
       : val(std::move(val)) {}
-  cookie::expression<T> expressionNode(){}
+  cookie::expression<T> expressionNode() {}
   cookie::token val;
 };
 } // namespace cookie

@@ -119,4 +119,5 @@ cookie::token_type cookie::token::token_threeChars(int c1, int c2, int c3) {
     }
     break;
   }
+  return cookie::token_type::token_error;
 }

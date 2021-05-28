@@ -9,7 +9,6 @@ template <typename T> class statement : public cookie::Node<T> {
 public:
   inline std::string statementNode();
   inline std::string token_literal();
-  
 };
 
 } // namespace cookie

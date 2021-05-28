@@ -1,12 +1,11 @@
 #ifndef IDENTIFIER_HPP
 #define IDENTIFIER_HPP
 #include "expression.hpp"
-#include <cassert>
 
 namespace cookie {
 /*
  *  Identifier node to express an identifier
- *  identifier := <letter>{0-9}*{_}*  
+ *  identifier := <letter>{0-9}*{_}*
  */
 template <typename T> class identifier : public cookie::expression<T> {
 public:

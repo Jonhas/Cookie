@@ -2,7 +2,7 @@
 #define EXPRESSION_HPP
 
 #include "node.hpp"
-
+#include <cassert>
 namespace cookie {
 /*
  * Expression node to handle the production of values

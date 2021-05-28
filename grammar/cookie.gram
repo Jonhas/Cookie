@@ -1,7 +1,6 @@
 
 
-<identifier_statement> ::=
-    <identifier> :type := <expression>;
+<identifier_statement> ::= <identifier> :type := <expression>;
     | <identifier> := <expression>; 
 
 
