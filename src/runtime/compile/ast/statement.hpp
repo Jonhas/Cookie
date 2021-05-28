@@ -4,10 +4,12 @@
 #include "node.hpp"
 
 namespace cookie {
-
-template <typename T> class statement : public cookie::Node<T> {
+/*
+ * Statement node to express the instantiation of statements in a program.
+ */
+template <typename T> class statement : public cookie::node<T> {
 public:
-  inline std::string statementNode();
+  inline virtual std::string statementNode(){return std::string("Generic statement node"); }
   inline std::string token_literal();
 };
 

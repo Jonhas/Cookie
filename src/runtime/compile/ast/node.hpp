@@ -7,9 +7,9 @@ namespace cookie {
 /*
  * Generic Node class, an item within an AST
  */
-template <typename T> class Node {
+template <typename T> class node {
 public:
-  inline std::string token_literal();
+  inline virtual std::string token_literal() {return std::string("Generic AST Node");}
 };
 
 } // namespace cookie

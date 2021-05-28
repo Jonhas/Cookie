@@ -7,10 +7,11 @@ namespace cookie {
 /*
  * Expression node to handle the production of values
  */
-template <typename T> class expression : public cookie::Node<T> {
+template <typename T> class expression : public cookie::node<T> {
 public:
-  inline std::string expressionNode();
-  inline std::string token_literal();
+  inline virtual std::string expressionNode(){
+    return "generic expression Node\n";
+    }
 };
 
 } // namespace cookie

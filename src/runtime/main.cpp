@@ -1,4 +1,4 @@
-#include "compile/ast/identifier.hpp"
+#include "compile/ast/identifier_expression.hpp"
 #include "compile/compile.hpp"
 #include <cstdio>
 int main(int argc, char **argv) {
@@ -12,8 +12,8 @@ int main(int argc, char **argv) {
     return -1;
   }
   compile_file(argv[1]);
-  cookie::identifier<cookie::token> iden(
+  cookie::identifier_expression<cookie::token> iden(
       cookie::token(cookie::token_type::token_identifier, "foo"));
-  std::cout << iden.token_literal() << '\n';
+  std::cout << iden.expressionNode() << '\n';
   return 0;
 }
