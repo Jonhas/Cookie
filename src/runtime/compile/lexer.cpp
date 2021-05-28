@@ -127,6 +127,12 @@ cookie::token cookie::lexer::evaluate_arithmetic_and_advance() {
     lexer_advance(2);
     return token(type, temp);
   }
+  if ((peek() == peek(1)) && peek(2) == '=') {
+    auto type = cookie::token::token_threeChars(peek(), peek(1), peek(2));
+    auto temp = std::string(1, peek()) + peek(1) + peek(2);
+    lexer_advance(3);
+    return token(type, temp);
+  }
   std::string temp(1, peek());
   auto type = cookie::token::token_oneChar(peek());
   lexer_advance();

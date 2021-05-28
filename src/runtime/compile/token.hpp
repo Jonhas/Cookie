@@ -64,6 +64,7 @@ enum class token_type {
   token_mult_equal,
   token_divis_equal,
   token_mod_equal,
+  token_exp_equal,
 
   token_true,
   token_false,
@@ -101,7 +102,7 @@ public:
 
   static token_type token_oneChar(int c1);
   static token_type token_twoChars(int c1, int c2);
-
+  static token_type token_threeChars(int c1, int c2, int c3);
   static constexpr bool is_whitespace(int c1);
   static constexpr bool is_delimeter(int c1);
   static constexpr bool is_arithmetic_operator(int c1);

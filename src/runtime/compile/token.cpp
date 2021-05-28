@@ -105,3 +105,18 @@ cookie::token_type cookie::token::token_twoChars(int c1, int c2) {
   }
   return token_type::token_error;
 }
+
+cookie::token_type cookie::token::token_threeChars(int c1, int c2, int c3) {
+  switch (c1) {
+  case '*':
+    switch (c2) {
+    case '*':
+      switch (c3) {
+      case '=':
+        return cookie::token_type::token_exp_equal;
+      }
+      break;
+    }
+    break;
+  }
+}

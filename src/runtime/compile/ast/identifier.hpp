@@ -4,7 +4,10 @@
 #include <cassert>
 
 namespace cookie {
-
+/*
+ *  Identifier node to express an identifier
+ *  identifier := <letter>{0-9}*{_}*  
+ */
 template <typename T> class identifier : public cookie::expression<T> {
 public:
   explicit identifier(const cookie::token &t) : tok(std::move(t)) {

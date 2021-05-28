@@ -5,7 +5,16 @@
     | <identifier> := <expression>; 
 
 
-<identifier> := {a-zA-Z0-9_}+ 
+<identifier> := <letter>{0-9}*{_}*  
+
+<AugOperator> := 
+                | "+="
+                | "-="
+                | "*="
+                | "/="
+                | "%="
+                | "**="
+
 <char>  := ' <symbol> '
         | '<letter>'
         | '<number>'

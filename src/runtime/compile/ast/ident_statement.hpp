@@ -14,7 +14,7 @@ public:
   std::unique_ptr<cookie::expression<T>> value;
 
   cookie::statement<T> statementNode() {}
-  inline std::string token_literal() { return name->tok.value; }
+  inline std::string token_literal() { return iden->tok.value; }
 };
 } // namespace cookie
 
