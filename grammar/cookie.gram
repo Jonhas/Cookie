@@ -1,8 +1,16 @@
-// Will use : for type specialization, e.g, x: int, and := for assigning values, e.g, x :=3. 
-// So, if we want to make a new variable and assign a value to it, we have x: int := 3.  
 
-<identifier>  
-    | :type := <expression>;
-    | := <expression>; 
 
-Note: Refactor for tokens to returned by regular objects rather than pointers to an object. 
+<identifier_statement> ::=
+    <identifier> :type := <expression>;
+    | <identifier> := <expression>; 
+
+
+<identifier> := {a-zA-Z0-9_}+ 
+<char>  := ' <symbol> '
+        | '<letter>'
+        | '<number>'
+<letter> := {a-zA-Z}+
+<number> := {0-9}+  
+<symbol> := {"#%'*+,./:;=?@^_`|~-{}[]()><?}+
+
+

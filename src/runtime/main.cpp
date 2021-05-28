@@ -12,6 +12,7 @@ int main(int argc, char **argv) {
     return -1;
   }
   compile_file(argv[1]);
-  
+  cookie::identifier<cookie::token> iden(cookie::token(cookie::token_type::token_identifier, "foo")); 
+  std::cout << iden.token_literal() << '\n' ;
   return 0;
 }

@@ -93,14 +93,11 @@ enum class token_type {
 class token final {
 public:
   explicit token(token_type type) : type(type), value() {}
-  explicit token(const token &t):
-    type(std::move(t.type)), 
-    value(std::move(t.value))
-    {}
+  explicit token(const token &t)
+      : type(std::move(t.type)), value(std::move(t.value)) {}
 
   token(token_type type, std::string value)
       : type(type), value(std::move(value)) {}
-    
 
   static token_type token_oneChar(int c1);
   static token_type token_twoChars(int c1, int c2);
@@ -145,16 +142,15 @@ public:
       {"use", token_type::token_use},
       {"as", token_type::token_as}};
 
-  bool operator==(token&& other) 
-  {
-    return (type == std::move(other.type)) && (value == std::move(other.value)); 
+  bool operator==(token &&other) {
+    return (type == std::move(other.type)) && (value == std::move(other.value));
   }
 
-  token& operator=(token&& other) {
+  token &operator=(token &&other) {
     if (this == &other)
       return *this;
-    type = std::move(other.type); 
-    value = std::move(other.value); 
+    type = std::move(other.type);
+    value = std::move(other.value);
   }
 
   token &operator=(const token &other) {
