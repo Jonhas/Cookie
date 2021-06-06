@@ -1,24 +1,31 @@
 
+<statements> ::= <statements> <statement>
 
-<identifier_statement> ::= <identifier> :type := <expression>;
-    | <identifier> := <expression>; 
+<statement> ::= <identifier_statement>
+    | <if_statement>
+    | <while_statement>
+    | <statements>
 
+<identifier_statement> ::= <identifier> <expression>;
+
+<if_statement> ::= if <expression> <statement> 
+    | if <expression> <statement> else <statement>
+
+<while_statement> ::= while <expression> <statement>
 
 <identifier> := <letter>{0-9}*{_}*  
 
-<AugOperator> := 
-                | "+="
-                | "-="
-                | "*="
-                | "/="
-                | "%="
-                | "**="
+<AugOperator> :=  "+="
+    | "-="
+    | "*="
+    | "/="
+    | "%="
+    | "**="
 
 <char>  := ' <symbol> '
-        | '<letter>'
-        | '<number>'
+    | '<letter>'
+    | '<number>'
+
 <letter> := {a-zA-Z}+
 <number> := {0-9}+  
 <symbol> := {"#%'*+,./:;=?@^_`|~-{}[]()><?}+
-
-

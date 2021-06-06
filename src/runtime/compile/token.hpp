@@ -2,6 +2,7 @@
 #define TOKEN_H
 
 #include <iostream>
+#include <type_traits>
 #include <unordered_map>
 
 namespace cookie {

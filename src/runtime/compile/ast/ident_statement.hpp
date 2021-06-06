@@ -14,7 +14,8 @@ public:
   std::unique_ptr<cookie::expression<T>> value;
 
   inline std::string statementNode() override {
-    return std::string("Generic statement node with identifier") + iden->tok.value ; 
+    return std::string("Generic statement node with identifier") +
+           iden->tok.value;
   }
 };
 } // namespace cookie

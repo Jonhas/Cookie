@@ -11,6 +11,8 @@ public:
   explicit parser(std::vector<cookie::token> &tok)
       : tokens(std::move(tok)), token_position(0) {}
 
+  std::unique_ptr<cookie::node<cookie::token>> parse_program();
+
   [[nodiscard("Required for identifier parsing")]] std::unique_ptr<
       cookie::identifier_expression<cookie::token>>
   parse_identifier();

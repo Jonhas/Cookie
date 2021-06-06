@@ -9,7 +9,9 @@ namespace cookie {
  */
 template <typename T> class node {
 public:
-  inline virtual std::string token_literal() {return std::string("Generic AST Node");}
+  inline virtual std::string token_literal() {
+    return std::string("Generic AST Node");
+  }
 };
 
 } // namespace cookie

@@ -9,7 +9,9 @@ namespace cookie {
  */
 template <typename T> class statement : public cookie::node<T> {
 public:
-  inline virtual std::string statementNode(){return std::string("Generic statement node"); }
+  inline virtual std::string statementNode() {
+    return std::string("Generic statement node");
+  }
   inline std::string token_literal();
 };
 
