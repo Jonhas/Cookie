@@ -13,7 +13,7 @@
 
 <while_statement> ::= while <expression> <statement>
 
-<identifier> := <letter>{0-9}*{_}*  
+<identifier_node> := <letter>{0-9}*{_}*  
 
 <AugOperator> :=  "+="
     | "-="

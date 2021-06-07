@@ -13,11 +13,5 @@ int main(int argc, char **argv) {
     return -1;
   }
   compile_file(argv[1]);
-  //cookie::identifier_expression<cookie::token> iden(
-    //  cookie::token(cookie::token_type::token_identifier, "foo"));
-  //std::cout << iden.expressionNode() << '\n';
-  cookie::ident_expression<cookie::token> iden(cookie::token(cookie::token_type::token_identifier,
-        "bar"));   
-  std::cout << iden.expression_literal() << '\n'; 
   return 0;
 }
